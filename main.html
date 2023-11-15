@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income vs Expenses Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div style="width:60%; margin: 0 auto;">
+        <canvas id="myChart"></canvas>
+    </div>
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+
+        // Generate dates for the x-axis
+        function generateDates(startDateStr, numOfDays) {
+            const dates = [];
+            let currentDate = new Date(startDateStr);
+            for (let i = 0; i < numOfDays; i++) {
+                dates.push(new Date(currentDate));
+                currentDate.setDate(currentDate.getDate() + 1);
+            }
+            return dates;
+        }
+
+        const labels = generateDates('2023-01-01', 100).map(date => date.toLocaleDateString('en-US'));
+
+        // Generating income and expenses data
+        const income = [...Array(100).keys()].map(i => 100 * Math.pow(1.1, i));
+        const expenses = [...Array(100).keys()].map(i => 100 * Math.pow(1.02, i));
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Income',
+                backgroundColor: 'rgba(0, 128, 0, 0.5)',
+                borderColor: 'green',
+                data: income,
+                fill: false,
+                pointRadius: 3,
+                pointHoverRadius: 6,
+            }, {
+                label: 'Expenses',
+                backgroundColor: 'rgba(255, 0, 0, 0.5)',
+                borderColor: 'red',
+                data: expenses,
+                fill: false,
+                pointRadius: 3,
+                pointHoverRadius: 6,
+            }]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {}
+        };
+
+        const myChart = new Chart(ctx, config);
+    </script>
+</body>
+</html>
