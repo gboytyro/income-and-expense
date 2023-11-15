@@ -10,7 +10,7 @@ Our chart illustrates Alex's financial journey. It's a tale that reveals a key s
 
 ## Visualizing Financial Discipline
 
-![Income vs Expenses Over Time](path_to_image/income_vs_expenses_chart.png)
+![Income vs Expenses Over Time](https://raw.githubusercontent.com/gboytyro/income-and-expense/main/chart%20income%20expense.png)
 
 The line graph you see captures two pivotal trajectories:
 
