@@ -8,6 +8,9 @@ Imagine a young entrepreneur named Alex, who just started on a path to financial
 
 Our chart illustrates Alex's financial journey. It's a tale that reveals a key strategy for financial success: growing your income while controlling and minimizing your expenses.
 
+look at the graph here:
+https://gboytyro.github.io/income-and-expense/
+
 ## Visualizing Financial Discipline
 
 ![Income vs Expenses Over Time](https://raw.githubusercontent.com/gboytyro/income-and-expense/main/chart%20income%20expense.png)
