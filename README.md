@@ -52,7 +52,3 @@ This visualization was created using JavaScript and the Chart.js library, enabli
 # Feedback and Contributions
 
 Your thoughts and suggestions are valuable to us! If you have any feedback or wish to contribute to this project, please feel free to open an issue or submit a pull request on [GitHub](https://github.com/your-username/your-repository).
-
-# License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details.
