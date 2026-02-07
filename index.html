@@ -1,63 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Income vs Expenses Chart</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
-    <div style="width:60%; margin: 0 auto;">
-        <canvas id="myChart"></canvas>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Freedom Gap Visualization</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <h1>Freedom Gap Visualization</h1>
+        <p>
+          Explore how the gap between your income and expenses grows over time. The shaded
+          Freedom Zone shows the surplus you can invest toward financial freedom.
+        </p>
+      </header>
+
+      <main class="layout">
+        <section class="panel" aria-label="Projection inputs">
+          <h2>Projection Inputs</h2>
+          <form id="controls" class="form-grid">
+            <div class="field">
+              <label for="startingIncome">Starting income (annual)</label>
+              <input
+                id="startingIncome"
+                name="startingIncome"
+                type="number"
+                min="0"
+                step="100"
+                value="60000"
+                required
+              />
+              <span class="helper-text">Current yearly income in USD.</span>
+            </div>
+            <div class="field">
+              <label for="startingExpense">Starting expenses (annual)</label>
+              <input
+                id="startingExpense"
+                name="startingExpense"
+                type="number"
+                min="0"
+                step="100"
+                value="42000"
+                required
+              />
+              <span class="helper-text">Current yearly expenses in USD.</span>
+            </div>
+            <div class="field">
+              <label for="incomeGrowthRate">Income growth rate (%)</label>
+              <input
+                id="incomeGrowthRate"
+                name="incomeGrowthRate"
+                type="number"
+                min="0"
+                step="0.1"
+                value="4.5"
+                required
+              />
+              <span class="helper-text">Annual percentage growth of income.</span>
+            </div>
+            <div class="field">
+              <label for="expenseGrowthRate">Expense growth rate (%)</label>
+              <input
+                id="expenseGrowthRate"
+                name="expenseGrowthRate"
+                type="number"
+                min="0"
+                step="0.1"
+                value="2.5"
+                required
+              />
+              <span class="helper-text">Annual percentage growth of expenses.</span>
+            </div>
+            <div class="field">
+              <label for="years">Number of years</label>
+              <input
+                id="years"
+                name="years"
+                type="number"
+                min="1"
+                step="1"
+                value="15"
+                required
+              />
+              <span class="helper-text">Projection horizon.</span>
+            </div>
+            <p id="formError" class="error" role="alert"></p>
+          </form>
+        </section>
+
+        <section class="panel chart-panel" aria-label="Freedom Gap chart">
+          <div class="chart-wrapper">
+            <canvas id="freedomChart"></canvas>
+          </div>
+
+          <div class="legend" aria-label="Legend">
+            <span><span class="swatch income"></span>Income</span>
+            <span><span class="swatch expense"></span>Expenses</span>
+            <span><span class="swatch freedom"></span>Freedom Zone (surplus)</span>
+          </div>
+
+          <div class="freedom-total" id="totalFreedom"></div>
+        </section>
+      </main>
     </div>
-    <script>
-        const ctx = document.getElementById('myChart').getContext('2d');
-
-        // Generate dates for the x-axis
-        function generateDates(startDateStr, numOfDays) {
-            const dates = [];
-            let currentDate = new Date(startDateStr);
-            for (let i = 0; i < numOfDays; i++) {
-                dates.push(new Date(currentDate));
-                currentDate.setDate(currentDate.getDate() + 1);
-            }
-            return dates;
-        }
-
-        const labels = generateDates('2023-01-01', 100).map(date => date.toLocaleDateString('en-US'));
-
-        // Generating income and expenses data
-        const income = [...Array(100).keys()].map(i => 100 * Math.pow(1.1, i));
-        const expenses = [...Array(100).keys()].map(i => 100 * Math.pow(1.02, i));
-
-        const data = {
-            labels: labels,
-            datasets: [{
-                label: 'Income',
-                backgroundColor: 'rgba(0, 128, 0, 0.5)',
-                borderColor: 'green',
-                data: income,
-                fill: false,
-                pointRadius: 3,
-                pointHoverRadius: 6,
-            }, {
-                label: 'Expenses',
-                backgroundColor: 'rgba(255, 0, 0, 0.5)',
-                borderColor: 'red',
-                data: expenses,
-                fill: false,
-                pointRadius: 3,
-                pointHoverRadius: 6,
-            }]
-        };
-
-        const config = {
-            type: 'line',
-            data: data,
-            options: {}
-        };
-
-        const myChart = new Chart(ctx, config);
-    </script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="ui.js"></script>
+    <script src="chart.js"></script>
+    <script src="main.js"></script>
+  </body>
 </html>
