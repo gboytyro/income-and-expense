@@ -11,6 +11,9 @@ This is a 100% static site. No build steps are required.
 
 That’s it!
 
+you also can look is here:
+https://gboytyro.github.io/income-and-expense/
+
 ## Why this visualization matters
 
 The Freedom Gap chart helps illustrate how two habits shape long-term outcomes:
