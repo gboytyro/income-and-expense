@@ -11,9 +11,16 @@ window.FreedomUI = (() => {
   });
 
   const elements = {
-    form: document.getElementById("controls"),
-    error: document.getElementById("formError"),
-    totalFreedom: document.getElementById("totalFreedom"),
+    form: null,
+    error: null,
+    totalFreedom: null,
+  };
+
+  const init = () => {
+    elements.form = document.getElementById("controls");
+    elements.error = document.getElementById("formError");
+    elements.totalFreedom = document.getElementById("totalFreedom");
+    return elements;
   };
 
   const parseNumber = (value) => {
@@ -41,6 +48,7 @@ window.FreedomUI = (() => {
   };
 
   const getFormValues = () => {
+    if (!elements.form) return null;
     const formData = new FormData(elements.form);
     const values = {
       startingIncome: parseNumber(formData.get("startingIncome")),
@@ -51,12 +59,15 @@ window.FreedomUI = (() => {
     };
 
     const errorMessage = validateInputs(values);
-    elements.error.textContent = errorMessage;
+    if (elements.error) {
+      elements.error.textContent = errorMessage;
+    }
 
     return errorMessage ? null : values;
   };
 
   const updateTotalFreedom = (years, totalFreedom) => {
+    if (!elements.totalFreedom) return;
     elements.totalFreedom.textContent = `Total Freedom (Cumulative Surplus) after ${years} years: ${formatCurrency(totalFreedom)}`;
   };
 
@@ -64,6 +75,7 @@ window.FreedomUI = (() => {
 
   return {
     elements,
+    init,
     getFormValues,
     updateTotalFreedom,
     formatCurrency,
