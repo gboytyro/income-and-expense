@@ -11,7 +11,7 @@ This is a 100% static site. No build steps are required.
 
 That’s it!
 
-you also can look is here:
+You can also look at it here:
 https://gboytyro.github.io/income-and-expense/
 
 ## Why this visualization matters
